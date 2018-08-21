@@ -24,6 +24,6 @@ var speakCmd = &cobra.Command{
 // 第4引数: 説明
 func init() {
 	// サブコマンドのフラグ定義
-	speakCmd.PersistentFlags().StringVar(&speak, "speak", "デフォルト値", "your speaking")
+	speakCmd.PersistentFlags().StringVar(&speak, "speak", "デフォルト値", "")
 	RootCmd.AddCommand(speakCmd)
 }

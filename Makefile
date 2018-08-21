@@ -34,6 +34,10 @@ setup: $(TMPDIR)
 	@if [ -z `which dep 2> /dev/null` ]; then \
 		go get github.com/golang/dep/cmd/dep; \
 		fi
+	@if [ -z `which gnatsd 2> /dev/null` ]; then \
+		go get github.com/nats-io/gnatsd; \
+		fi
+
 
 .PHONY: dep
 ## install dependencies packages
@@ -54,10 +58,35 @@ build: clean dep $(BINARY)
 speak_world: build
 	@$(BINARY) speak_world
 
-.PHONY: clock
-## running clock
-clock: build
-	@$(BINARY) clock
+.PHONY: clock_server
+## running clock_server
+clock_server: build
+	@$(BINARY) clock_server
+
+.PHONY: clock_client
+## running clock_client
+clock_client: build
+	@$(BINARY) clock_client
+
+.PHONY: subscriber
+## running subscriber
+subscriber: build
+	@$(BINARY) subscriber
+
+.PHONY: publisher
+## running publisher
+publisher: build
+	@$(BINARY) publisher
+
+.PHONY: clock_publisher
+## running clock_publisher
+clock_publisher: build
+	@$(BINARY) clock_publisher
+
+.PHONY: gnatsd
+## running nuts server
+gnatsd:
+	@gnatsd -D -V
 
 .PHONY: clean
 ## clean up tmp dir and binary
