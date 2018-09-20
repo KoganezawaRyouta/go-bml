@@ -38,7 +38,6 @@ setup: $(TMPDIR)
 		go get github.com/nats-io/gnatsd; \
 		fi
 
-
 .PHONY: dep
 ## install dependencies packages
 dep: setup
